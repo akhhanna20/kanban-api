@@ -22,8 +22,8 @@ function routes(app) {
     });
 
     app.post('/cards', (req, res) => {
-        const cards = req.body;
-        cards.push({id: Math.random().toString(), ...cards});
+        const card = req.body;
+        cards.push({id: Math.random().toString(), ...card});
         res.send('Card created');
     })
     app.patch('/cards/:cardId', (req, res) => {
