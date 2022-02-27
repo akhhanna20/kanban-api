@@ -1,7 +1,9 @@
+
 let cards = [
     {id: '1', name: 'First card', status: 'todo', priority: 2},
     {id: '2', name: 'Second card', status: 'progress', priority: 5}
 ];
+
 function routes(app) {
 
     app.get('/', (req, res) => {
@@ -20,9 +22,8 @@ function routes(app) {
     });
 
     app.post('/cards', (req, res) => {
-        console.log(req)
-        const card = req.body;
-        cards.push({id: Math.random().toString(), ...card});
+        const cards = req.body;
+        cards.push({id: Math.random().toString(), ...cards});
         res.send('Card created');
     })
     app.patch('/cards/:cardId', (req, res) => {
@@ -31,6 +32,6 @@ function routes(app) {
         cards = cards.map(el =>
             el.id === cardId ? ({...card, id: el.id}) : el)
         res.send('Card updated');
-    })
+    });
 }
 module.exports = routes;
